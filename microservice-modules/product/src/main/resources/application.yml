@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: 'Product Module'
+
+server:
+  port: 9901
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:9900/eureka}
