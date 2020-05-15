@@ -1,0 +1,18 @@
+rootProject.name = 'GradleMultiProject' // Project Name
+include "main-application" // Include Main Application
+
+[
+        "microservice-modules/",
+        "microservice-managers/",
+].each {
+    String modulePath = "${it}"
+    File modulePathFile = file(modulePath)
+    if (modulePathFile.exists()) {
+        modulePathFile.list().each { name ->
+            if (name != "empty") {
+                include(name)
+                project(":${name}").projectDir = file(modulePath + name)
+            }
+        }
+    }
+}
